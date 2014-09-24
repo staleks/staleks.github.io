@@ -3,6 +3,105 @@
  * @date: May 2014.
  *
  */
-.page-content {
-    padding-top: 70px;
+/*******************************************
+FONTS
+*******************************************/
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300italic,300,400italic,400,500italic,500,700italic,700);
+
+body{
+    font-family: 'Ubuntu', Arial, Tahoma;
+    font-weight: 400;
+    font-size: 1em;
+    color: #363636;
+    background: #ededed;
+}
+
+/*********************************************************
+ * CONTAINER
+ *********************************************************/
+.container {
+    margin-top: 80px;
+    margin-bottom: 15px;
+    background: #fff;
+}
+
+/*********************************************************
+ * PHOTO
+ *********************************************************/
+#photo-header{
+    margin-top: -75px;
+}
+
+#photo{
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 5px;
+    background: #ededed;
+    display: inline-block;
+}
+
+#photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+/*********************************************************
+ * TEXT-HEADER
+ *********************************************************/
+#text-header h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2.4em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+#text-header h1::first-line {
+    font-size: 1.5em;
+    letter-spacing: -4px;
+    font-weight: 800;
+    line-height: 1.5em;
+}
+
+#text-header h1 span {
+    /**color: #F0563D;**/
+    color: #285e8e;
+}
+
+#text-header h1 sup {
+    opacity: 0.5;
+}
+
+#text-header:after {
+    width: 100%;
+    height: 3px;
+    background: url('../img/line.png');
+    margin-top: 15px;
+    content: '';
+    display: block;
+}
+
+/*******************************************
+DEFAULT BOX
+*******************************************/
+.box {
+    margin-bottom: 15px;
+}
+.box h2 {
+    color: #EC7263;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.box h2:before {
+    content: '//';
+    margin-right: 5px;
+}
+.box p {
+    font-size: 1.3em;
+    line-height: 1.5em;
 }
