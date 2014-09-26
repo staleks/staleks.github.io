@@ -358,3 +358,12 @@ HOBBIES
     left: 7px;
 }
 
+/*******************************************
+FOOTER
+*******************************************/
+.footer {
+    font-size: 1.3em;
+    font-style: normal;
+    font-weight: normal;
+    color: #285e8e;
+}
