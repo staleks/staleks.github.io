@@ -248,6 +248,14 @@ CONTACT
     opacity: 0.7;
 }
 
+.contact-item .description a:link,
+.contact-item .description a:active,
+.contact-item .description a:hover,
+.contact-item .description a:visited
+{
+    color: #102E5E;
+}
+
 /*******************************************
 SKILLS
 *******************************************/
