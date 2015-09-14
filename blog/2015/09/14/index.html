@@ -40,7 +40,29 @@
                         </pre>
                     </li>
                     <li>
-
+                        Now time to implement `Data Volume Container`
+                        <p />
+                        Create new named data volume container
+                        <pre>
+                            $ docker create -v /var/jenkins_home --name jenkins-dv jenkins
+                        </pre>
+                    </li>
+                    <li>
+                        To make use of Data Volume Container --volumes-from
+                        <pre>
+                            $ docker run -d -p 8080:8080 --volumes-from jenkins-dv --name myjenkins jenkins
+                        </pre>
+                    </li>
+                    <li>
+                        Now every change is persisted.
+                        Try adding some Jenkins plugins.
+                        <pre>
+                            $ docker stop {container_id}
+                        </pre>
+                        and then start myjenkins again
+                        <pre>
+                            $ docker start {container_id}
+                        </pre>
                     </li>
                 </ul>
             </div>
