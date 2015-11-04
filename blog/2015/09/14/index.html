@@ -1,89 +1,192 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
-    <title>.: Blog page 2015/09/14 - Jenkins as Docker image:.</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>A.Stoisavljevic - Blogs - Jenkins&Docker</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
 
-    <meta name="author" content="Stoisavljevic Aleksandar">
-    <meta name="description" content="homepage of Aleksandar Stoisavljevic, consultant, java developer, web developer">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
 
-    <link href="css/normalize.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <script src="js/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="../../../../css/main.css">
 </head>
 <body>
-    <!-- Your code goes here -->
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-7">
-                <p>
-                    How to make use of Docker Jenkins image
-                </p>
-                <ul>
-                    <li>
-                        Pull Jenkins Docker image -
+<header class="hero-image" role="banner" style="background-image: url(../../../../img/laptop-at-airport.jpg);">
+    &nbsp;
+</header>
+
+<main class="container">
+    <div class="row">
+        <div class="col-xs-12 single-content">
+            <p class="meta">
+                <a class="" href="category.html">Aleksandar Stoisavljevic</a> in <a class="" href="category.html">DevOps</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 23 minute read
+            </p>
+
+            <h1>A great story about how to setup Jenkins using Docker</h1>
+
+            <p class="subtitle">Like I said, never told...</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra ligula eget feugiat sollicitudin. Praesent accumsan, ante ut porttitor aliquet, odio felis mollis ante, et pretium arcu ipsum eget turpis. Quisque congue odio tristique, tincidunt arcu a, dignissim neque. Cras ligula erat, porta sed tristique at, sollicitudin sit amet ligula. Quisque eleifend elementum mauris, eu condimentum tortor ultrices a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer hendrerit, arcu a aliquam malesuada, sapien quam tempor neque, nec aliquam odio mi vel diam. Pellentesque egestas pharetra justo, id malesuada erat tincidunt ac. Ut mauris mauris, ultricies ut pharetra sit amet, suscipit sed nibh. Suspendisse vestibulum sem sed rhoncus pharetra. Nunc commodo, neque eget gravida mattis, augue est sollicitudin nunc, elementum aliquet tortor mi ac velit. Ut nec pharetra est. Vestibulum at mauris sapien. Duis sed turpis at lectus egestas rhoncus.</p>
+
+            <p class="pullquote">Ut ullamcorper turpis nec felis vestibulum, vitae pretium mi sodales.</p>
+
+
+            <p>Suspendisse laoreet consequat pellentesque. Aliquam erat volutpat. Nulla est elit, bibendum sit amet mauris eu, varius sollicitudin nibh. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus veniam laborum sapiente, doloribus placeat culpa aliquam asperiores laudantium nobis ipsum ut, suscipit delectus! Aut delectus, voluptate, sunt fugiat ea harum!</p>
+
+            <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel voluptatem optio, excepturi, sapiente corporis nihil quis natus quibusdam odio ex laborum cupiditate minima eos.</blockquote>
+
+            <p>auctor a erat ac, dignissim bibendum urna. Ut aliquet convallis scelerisque. Praesent id luctus leo. Nam vestibulum interdum ligula blandit molestie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis tempore illum inventore sit commodi, id eos nemo est voluptate aperiam tenetur? In, sint sed reprehenderit ipsum voluptas, nam molestias velit.</p>
+
+            <hr>
+
+            <p>Etiam sed condimentum elit. Curabitur eu malesuada turpis. Nam sit amet dui tellus. Nullam eget neque sed lectus tincidunt fermentum. Aenean ac interdum odio, vitae consectetur erat. Nunc venenatis turpis sed consectetur lacinia. Phasellus euismod odio feugiat, semper ligula in, egestas magna. Duis ullamcorper gravida lacus a blandit. Fusce et diam pellentesque, egestas diam pellentesque, gravida libero. Ut condimentum, nulla ac faucibus porttitor, est dui gravida est, vel varius mi justo at erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisis diam eu libero suscipit lacinia. Sed sollicitudin justo ut fermentum venenatis. Morbi justo magna, pellentesque rutrum scelerisque eget, vehicula ac eros. Nam quis velit ac lorem blandit egestas eget id ante. Integer nibh arcu, vulputate eget luctus vel, porta eu ligula.</p>
+
+
+            <ul>
+                <li>
+                    Pull Jenkins Docker image -
                         <pre>
                             $ docker pull jenkins
                         </pre>
-                        this is official Jenkins Docker image
-                    </li>
-                    <li>
-                        If you want to run this container, here is how
+                    this is official Jenkins Docker image
+                </li>
+                <li>
+                    If you want to run this container, here is how
                         <pre>
                             $ docker run -d -p 8080:8080 jenkins
                         </pre>
-                    </li>
-                    <li>
-                        Now time to implement `Data Volume Container`
-                        <p />
-                        Create new named data volume container
+                </li>
+                <li>
+                    Now time to implement `Data Volume Container`
+                    <p />
+                    Create new named data volume container
                         <pre>
                             $ docker create -v /var/jenkins_home --name jenkins-dv jenkins
                         </pre>
-                    </li>
-                    <li>
-                        To make use of Data Volume Container --volumes-from
+                </li>
+                <li>
+                    To make use of Data Volume Container --volumes-from
                         <pre>
                             $ docker run -d -p 8080:8080 --volumes-from jenkins-dv --name myjenkins jenkins
                         </pre>
-                    </li>
-                    <li>
-                        Now every change is persisted.
-                        Try adding some Jenkins plugins.
+                </li>
+                <li>
+                    Now every change is persisted.
+                    Try adding some Jenkins plugins.
                         <pre>
                             $ docker stop {container_id}
                         </pre>
-                        and then start myjenkins again
+                    and then start myjenkins again
                         <pre>
                             $ docker start {container_id}
                         </pre>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- End of your code -->
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+                </li>
+            </ul>
 
-<script src="js/main.js"></script>
+
+            <p>Lorem massa hendrerit mi, ut dapibus sem enim at nisl. Nullam ut mollis arcu. Quisque lobortis nibh diam, non molestie dui pretium et. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quos, mollitia dolor nam soluta consequuntur excepturi eveniet quod autem quasi. Labore dolorum vel voluptates molestias qui perspiciatis eveniet non, culpa!</p>
+
+
+        </div><!-- main-content/col -->
+    </div> <!--/row -->
+
+</main> <!-- /container -->
+
+<footer class="single">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-2">
+                <img src="../../../../img/as-profile.jpg" class="user-icon " alt="user-image">
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="category-list">
+                    <p>Published <span>14th September 2015</span></p>
+                    <p><a href="#">Aleksandar Stoisavljevic</a> in <a href="#">DevOps</a></p>
+
+                    <div class="other-catergories">
+                        <h3>Also found in</h3>
+
+                        <ul>
+                            <li><a href="#">Stories</a>,</li>
+                            <li><a href="#">Life</a>,</li>
+                            <li><a href="#">Adventures</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div><!-- end col -->
+            <div class="col-xs-12 col-sm-4">
+                <div class="social">
+                    <p>Share this article</a>
+                    <div class="social-links">
+                        <a class="social-icon" href="#" data-platform="twitter" data-message="Message about this post" data-url="#"><i class="fa fa-twitter"></i></a>
+
+                        <!--
+                        <a class="social-icon" href="#" data-platform="facebook" data-message="Message about this post" data-url="#"><i class="fa fa-facebook-official"></i></a>
+                        -->
+
+                        <a class="social-icon" data-platform="mail"  href="mailto:staleks@gmail.com"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end row -->
+    </div>
+
+    <!--
+    <div class="row read-another-section">
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-iceland.jpg">
+            <h3 class="read-another">Land of Fire &amp; Ice</h3>
+        </div></a>
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-spain.jpg">
+            <h3 class="read-another">The Coast of Your Mind</h3>
+        </div></a>
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-peak.jpg">
+            <h3 class="read-another">Get Out of Your Comfort Zone</h3>
+        </div></a>
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-woods.jpg">
+            <h3 class="read-another">Not All Who Wander Are Lost</h3>
+        </div></a>
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-sunset.jpg">
+            <h3 class="read-another">Open Your Mind</h3>
+        </div></a>
+        <a href="post.html"><div class="col-sm-6 col-md-2 no-gutter read-another-container">
+            <div class="overlay"></div>
+            <img src="img/square-mountain.jpg">
+            <h3 class="read-another">Ten Reasons to Hike</h3>
+        </div></a>
+    </div>
+    -->
+</footer>
+
+<!-- End of your code -->
+<script src="../../../../js/jquery-2.1.1.min.js"></script>
+<script src="../../../../js/bootstrap.min.js"></script>
+
+<script src="../../../../js/main.js"></script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-                    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-                e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-                e.src='//www.google-analytics.com/analytics.js';
-                r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-5333275-2','auto');
-            ga('require', 'displayfeatures');
-            ga('send','pageview');
-        </script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-5333275-2','auto');
+    ga('require', 'displayfeatures');
+    ga('send','pageview');
+</script>
 </body>
 </html>
