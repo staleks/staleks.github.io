@@ -16,6 +16,7 @@ var callback = function(){
         }, 2000);
     });
 };
+
 $(document).ready(callback);
 
 var resize;
