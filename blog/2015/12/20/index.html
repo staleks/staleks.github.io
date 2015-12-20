@@ -13,8 +13,9 @@
 
     <link rel="stylesheet" href="../../../../css/main.css">
 
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <!-- HighlightJS -->
+    <link rel="stylesheet" href="../../../../css/default.css">
+    <script src="../../../../js/highlight.js"></script>
 
 </head>
 <body>
@@ -31,63 +32,66 @@
                 <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 20 minute read
             </p>
 
-            <h1>A great story about how to setup SpringBoot, Jersey & Eureka</h1>
+            <h1>A story about how to setup SpringBoot, Jersey & Eureka</h1>
 
-            <p class="subtitle">Like I said, never told...</p>
+            <p class="subtitle">Jersey 2.x and SpringCloud doesn't get along so I have to make my fingers dirty ... </p>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra ligula eget feugiat sollicitudin.
-                Praesent accumsan, ante ut porttitor aliquet, odio felis mollis ante, et pretium arcu ipsum eget turpis.
-                Quisque congue odio tristique, tincidunt arcu a, dignissim neque. Cras ligula erat, porta sed
-                tristique at, sollicitudin sit amet ligula. Quisque eleifend elementum mauris, eu condimentum tortor
-                ultrices a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                Integer hendrerit, arcu a aliquam malesuada, sapien quam tempor neque, nec aliquam odio mi vel diam.
-                Pellentesque egestas pharetra justo, id malesuada erat tincidunt ac. Ut mauris mauris, ultricies ut
-                pharetra sit amet, suscipit sed nibh. Suspendisse vestibulum sem sed rhoncus pharetra. Nunc commodo,
-                neque eget gravida mattis, augue est sollicitudin nunc, elementum aliquet tortor mi ac velit.
-                Ut nec pharetra est. Vestibulum at mauris sapien. Duis sed turpis at lectus egestas rhoncus.
+                Poslednjih nekoliko meseci evaluiram/istrazujem mikroservise. Pripremajuci se za jednu konferenciju,
+                odlucio sam da napravim demo applikaciju gde bih mogao, pored onoga sto je i tema mog rada,
+                da se pozabavim arhitekturom aplikacija baziranih na mikroservisima.
+                <br/>
+                Ideja koja mi se razvila u glavi je bila i da probam, Spring Cloud komponente.
+                <br/>
+                Sastavni delovi finalnog proizvoda su:
+                <ul>
+                    <li>Spring Boot 1.3.1.RELEASE</li>
+                    <li>Jersey JAX-RS 2.x</li>
+                    <li>Spring Cloud Eureka 1.0.4.RELEASE</li>
+                </ul>
             </p>
 
-            <p class="pullquote">Ut ullamcorper turpis nec felis vestibulum, vitae pretium mi sodales.</p>
-
+            <p class="pullquote">Spring Cloud Eureka Server (service discovery)</p>
 
             <p>
-                Suspendisse laoreet consequat pellentesque. Aliquam erat volutpat. Nulla est elit, bibendum sit amet
-                mauris eu, varius sollicitudin nibh. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Temporibus veniam laborum sapiente, doloribus placeat culpa aliquam asperiores laudantium nobis
-                ipsum ut, suscipit delectus! Aut delectus, voluptate, sunt fugiat ea harum!
+                Ovde opisujem kako sam napravio Eureka Server
             </p>
 
             <blockquote>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel voluptatem optio, excepturi, sapiente
-                corporis nihil quis natus quibusdam odio ex laborum cupiditate minima eos.
+                Neki quote iz Spring Cloud Netflix Eureke
             </blockquote>
 
+            <p class="pullquote">Spring Boot and Jersey (JAX-RS ref. implementation)</p>
+
             <p>
-                auctor a erat ac, dignissim bibendum urna. Ut aliquet convallis scelerisque. Praesent id luctus leo.
-                Nam vestibulum interdum ligula blandit molestie. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Blanditiis tempore illum inventore sit commodi, id eos nemo est voluptate aperiam tenetur?
-                In, sint sed reprehenderit ipsum voluptas, nam molestias velit.
+                Kako izgleda setup Spring Boot & Jersey startup-a.
+                <br/>
+                Pokazi kako lepo funkcionise bez Eureka Discovery klijenta.
             </p>
 
             <hr>
 
             <p>
-                Etiam sed condimentum elit. Curabitur eu malesuada turpis. Nam sit amet dui tellus. Nullam eget
-                neque sed lectus tincidunt fermentum. Aenean ac interdum odio, vitae consectetur erat.
-                Nunc venenatis turpis sed consectetur lacinia. Phasellus euismod odio feugiat, semper ligula in,
-                egestas magna. Duis ullamcorper gravida lacus a blandit. Fusce et diam pellentesque, egestas diam
-                pellentesque, gravida libero. Ut condimentum, nulla ac faucibus porttitor, est dui gravida est, vel
-                varius mi justo at erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Nulla facilisis diam eu libero suscipit lacinia. Sed sollicitudin justo ut
-                fermentum venenatis. Morbi justo magna, pellentesque rutrum scelerisque eget, vehicula ac eros.
-                Nam quis velit ac lorem blandit egestas eget id ante. Integer nibh arcu, vulputate eget luctus vel,
-                porta eu ligula.
+                Problemi u raju. Ovde pokazati kako stvar ne funkcionise zbog toga sto
+                je Spring Cloud Eureka zasnovan na Jersey 1.x, a Spring starter Jersey je
+                baziran na Jersey 2.x
             </p>
+
+            <p class="pullquote">How I solve it?</p>
 
 
             <p>
-                some finalization text
+                Do not use Spring Jersey starter.
+                <br/>
+                Add dependencies of Jersey 1.19 (latest from 1.x)
+                <br/>
+                Napravi dva nova Github repositorija sa finalnim resenjem
+                <br/>
+                Screenshots:
+                <ul>
+                    <li>Eureka Server - apps</li>
+                    <li>Spring Boot microservice & Jersey 1.x</li>
+                </ul>
             </p>
 
         </div><!-- main-content/col -->
