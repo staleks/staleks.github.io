@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>A.Stoisavljevic - Blogs - Jenkins&Docker</title>
+    <title>A.Stoisavljevic - Blogs - SpringBoot, Jersey & Eureka</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -26,10 +26,12 @@
     <div class="row">
         <div class="col-xs-12 single-content">
             <p class="meta">
-                <a class="" href="category.html">Aleksandar Stoisavljevic</a> in <a class="" href="category.html">DevOps</a> <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 23 minute read
+                <a class="" href="category.html">Aleksandar Stoisavljevic</a> in
+                <a class="" href="category.html">Development</a>
+                <i class="link-spacer"></i> <i class="fa fa-bookmark"></i> 20 minute read
             </p>
 
-            <h1>A great story about how to setup Jenkins using Docker</h1>
+            <h1>A great story about how to setup SpringBoot, Jersey & Eureka</h1>
 
             <p class="subtitle">Like I said, never told...</p>
 
@@ -83,41 +85,6 @@
                 porta eu ligula.
             </p>
 
-            <ul>
-                <li>
-                    Pull Jenkins Docker image
-                    <br/>
-                    <pre><code class="bash">$ docker pull jenkins</code></pre>
-                    this is official Jenkins Docker image
-                </li>
-                <li>
-                    If you want to run this container, here is how
-                    <br/>
-                    <pre><code class="bash">$ docker run -d -p 8080:8080 jenkins</code></pre>
-                </li>
-                <li>
-                    Now time to implement `Data Volume Container`
-                    <br/>
-                    Create new named data volume container
-                    <pre><code class="bash">$ docker create -v /var/jenkins_home --name jenkins-dv jenkins</code></pre>
-                </li>
-                <li>
-                    To make use of Data Volume Container --volumes-from
-                    <br/>
-                    <pre><code class="bash">$ docker run -d -p 8080:8080 --volumes-from jenkins-dv --name myjenkins jenkins</code></pre>
-                </li>
-                <li>
-                    Now every change is persisted.
-                    <br/>
-                    Try adding some Jenkins plugins.
-                    <br/>
-                    <pre><code class="bash">$ docker stop {container_id}</code></pre>
-                    <br/>
-                    and then start myjenkins again
-                    <br/>
-                    <pre><code class="bash">$ docker start {container_id}</code></pre>
-                </li>
-            </ul>
 
             <p>
                 some finalization text
@@ -136,8 +103,8 @@
             </div>
             <div class="col-xs-12 col-sm-6">
                 <div class="category-list">
-                    <p>Published <span>14th September 2015</span></p>
-                    <p><a href="#">Aleksandar Stoisavljevic</a> in <a href="#">DevOps</a></p>
+                    <p>Published <span>20th December 2015</span></p>
+                    <p><a href="#">Aleksandar Stoisavljevic</a> in <a href="#">Development</a></p>
 
                     <div class="other-catergories">
                         <h3>Also found in</h3>
