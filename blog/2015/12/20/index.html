@@ -25,7 +25,7 @@
 
 <main class="container">
     <div class="row">
-        <div class="col-xs-12 single-content">
+        <p class="col-xs-12 single-content">
             <p class="meta">
                 <a class="" href="#">Aleksandar Stoisavljevic</a> in
                 <a class="" href="#">Development</a>
@@ -34,39 +34,129 @@
 
             <h1>A story about how to setup SpringBoot, Jersey & Eureka</h1>
 
-            <p class="subtitle">Jersey 2.x and SpringCloud doesn't get along so I have to make my fingers dirty ... </p>
+            <p class="subtitle"><i>Jersey 2.x and SpringCloud doesn't get along so I have to make my fingers dirty ...</i></p>
 
             <p>
-                Poslednjih nekoliko meseci evaluiram/istrazujem mikroservise. Pripremajuci se za jednu konferenciju,
-                odlucio sam da napravim demo applikaciju gde bih mogao, pored onoga sto je i tema mog rada,
-                da se pozabavim arhitekturom aplikacija baziranih na mikroservisima.
+                In the last couple of months I was evaluating/exploring micro-services. Preparing for one of the
+                conferences I've decided to make a demo application. While micro-services were not main theme for
+                conference presentation, I wanted to try to deal with micro-service architecture-based application.
                 <br/>
-                Ideja koja mi se razvila u glavi je bila i da probam, Spring Cloud komponente.
+                Idea that cross my mind was to investigate and try couple of Spring Cloud components.
                 <br/>
-                Sastavni delovi finalnog proizvoda su:
+                Main parts of final application were:
                 <ul>
                     <li>Spring Boot 1.3.1.RELEASE</li>
                     <li>Jersey JAX-RS 2.x</li>
                     <li>Spring Cloud Eureka 1.0.4.RELEASE</li>
                 </ul>
             </p>
-
-            <p class="pullquote">Spring Cloud Eureka Server (service discovery)</p>
-
             <p>
-                Ovde opisujem kako sam napravio Eureka Server
+                High Level Architecture (HLA) diagram is about to present: two well designed and minimalistic web services,
+                one that can represent Catalog (Manufacturer and PhoneModel) and the other that will deal with Inventory
+                (how many stock items of one phone model shop has at it's disposal).
+                Besides that, these two simple micro-services should become part of one bigger system/application, therefore
+                I wanted to play a bit with other key aspects of micro-services architecture like: service-discovery,
+                API gateway, etc.
+                Due to that fact, I've started to look into Spring Cloud components like: Eureka (service-discovery),
+                Zuul (API Gateway), ...
+            </p>
+            <p class="pullquote">Spring Cloud Eureka Server (service discovery)</p>
+            <p>
+                Investigation about Eureka was pretty straight forward.
+                <br/>
+                Good starting point is folowing URL:
+                <br/>
+                <a href="http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#spring-cloud-eureka-server">
+                    http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#spring-cloud-eureka-server
+                </a>
+            </p>
+            <p>
+                For this simple application, Eureka Server will be run in "Standalone Mode". Configuration in this case
+                is very simple, there is no need to configure peers.
+                <pre><code>
+                server:
+                    port: 8761
+                eureka:
+                     instance:
+                          hostname: localhost
+
+                     client:
+                          register-with-eureka: false
+                          fetch-registry: false
+                          service-url:
+                               defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+                </code></pre>
             </p>
 
-            <blockquote>
-                Neki quote iz Spring Cloud Netflix Eureke
-            </blockquote>
-
-            <p class="pullquote">Spring Boot and Jersey (JAX-RS ref. implementation)</p>
+            <p>
+                The Eureka Server is:
+                <ul>
+                    <li>managing a registry of Service Instances,</li>
+                    <li>provide means to register, de-register and query Instances with the registry,</li>
+                    <li>registry propagation to other Eureka Instances (Servers or Clients).</li>
+                </ul>
+            </p>
 
             <p>
-                Kako izgleda setup Spring Boot & Jersey startup-a.
+                I've prepared SpringBoot application based on Eureka Server.
                 <br/>
-                Pokazi kako lepo funkcionise bez Eureka Discovery klijenta.
+                Project is on Github, on the following URL:
+                <br/>
+                <a href="https://github.com/staleks/eureka-server">https://github.com/staleks/eureka-server</a>
+                <br/>
+                <br/>
+                Basic info, how to build and start application, you can find in README.md of that project.
+            </p>
+
+            <p class="pullquote">Spring Boot and Jersey</p>
+
+            <p>
+                Now it was the time to start building basic, already mentioned, services like Catalog service and
+                Inventory service.
+                <br/>
+                So let's start with Catalog Service. Again this will be SpringBoot based application based on REST service.
+                Catalog will be dealing with two basic entities like: Manufacturer and Phone (phone-model).
+                <br/>
+                Spring-Web and Spring-MVC have nice features providing support for controller/endpoints,
+                using Jackson data-bind, Java objects can be transformed to JSON objects very easily, I've decided to
+                try reference REST implementation, Jersey.
+            </p>
+
+            <p>
+                Ingredients for REST micro-service are:
+                <ul>
+                    <li>Spring Boot 1.3.1.RELEASE</li>
+                    <li>H2 In-Memory DB</li>
+                    <li>Spring Data JPA</li>
+                    <li>Liquibase - versin source control for DB</li>
+                    <li>JTransfo - Bean-to-bean mapper</li>
+                    <li>Jersey 2.x</li>
+                </ul>
+            </p>
+
+            <p>
+                I've prepared SpringBoot application, REST micro-service based on Jersey 2.x.
+                Started using <a href="http://start.spring.io">http://start.spring.io</a>.
+                Picked basic few stuff like: DevTools, Jersey, JPA, etc. The project can also be found on Github:
+                <br/>
+                <a href="https://github.com/staleks/spring-boot-jersey2">https://github.com/staleks/spring-boot-jersey2</a>
+                <br/>
+                <br/>
+                Basic info, how to build and start application, you can find in README.md of that project.
+            </p>
+
+            <p>
+                Application works fine, data is populated in H2 In-Memory data base
+                <img src="images/h2-console/h2-console-003.png">
+                and each of the exposed endpoint is available, showing data that were stored in DB.
+                <br/>
+                <img src="images/jersey/jersey-001.png">
+                <br/>
+                <img src="images/jersey/jersey-002.png">
+                <br/>
+                <img src="images/jersey/jersey-003.png">
+                <br/>
+                <img src="images/jersey/jersey-004.png">
             </p>
 
             <hr>
