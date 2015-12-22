@@ -23,7 +23,7 @@
     &nbsp;
 </header>
 
-<main class="container">
+<ul class="container">
     <p class="row">
         <p class="col-xs-12 single-content">
             <p class="meta">
@@ -279,25 +279,40 @@
                 I've started new project, you can find it on Github, on following URL:
                 <a href="https://github.com/staleks/spring-boot-jersey1">https://github.com/staleks/spring-boot-jersey1</a>
                 <br/>
-                Here I didn't want to complicate stuff with DB, but example has to prove that it can "talk" to Eureka-Server
-                and to use Spring Framework as glue code.
+                You will notice that this is almost same project as it was <i>demo-jersey2</i>.
+                Example has to prove that it can "talk" to Eureka-Server and to use Spring Framework as glue code.
                 <br/>
-                First build the application with Gradle, and start it in build/libs folder.
+                How to start the application, you can find it in README.md.
                 <br/>
                 After a while, (e.g. 30s heart-beat), you can see that <i>demo-jersey1</i> is in application list. (see the image below).
                 <img src="images/jersey/jersey-009.png">
-                Now let's examine endpoints, that are exposed in this application: /api/v1/manufacturers and /api/v1/manufacturers/2.
+                Then again let's go to /h2-console and make sure that data provided by liquibase is there in H2 In-Memory DB.
+                (already seen in previous demo-jersey2 application, just repeat steps).
+                <br/>
+                Now let's examine endpoints, that are exposed in this application:
+                <ul>
+                    <li>/api/v1/manufacturers - list all manufacturers</li>
+                    <li>/api/v1/manufacturers/1 - one manufacturer</li>
+                    <li>/api/v1/phonemodels - list all phones and finally</li>
+                    <li>/api/v1/phonemodels/1 - one phone</li>
+                </ul>
+                <br/>
+            </p>
+
+            <p>
                 <img src="images/jersey/jersey-010.png">
                 <img src="images/jersey/jersey-011.png">
-
-                <br/>
-                As we can see, Eureka-Server sees new micro-service, and endpoints are working.
+                <img src="images/jersey/jersey-012.png">
+                <img src="images/jersey/jersey-013.png">
             </p>
 
             <p>
                 Let me just to remind you that this is not only solution, it is just one of the solutions.
+                But it is working which is success by itself.
+                <br/>
                 Still I need to well document it.
-
+                <br/>
+                <br/>
                 ... to be continued ...
             </p>
 
