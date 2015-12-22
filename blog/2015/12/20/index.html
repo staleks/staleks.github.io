@@ -251,23 +251,54 @@
                 And if you look closely of dependencies for this project, you will find pretty obvious thing.
                 There are jersey-1.x JAR's, coming as dependencies of eureka-client applied on project. And
                 of course there are jersey-2.x JAR's coming as dependencies of spring-boot-starter-jersey.
+                <img src="images/jersey/jersey-007.png">
+                <img src="images/jersey/jersey-008.png">
+                <br/>
+                This problem is not something that I discovered. It is known to the community and well documented in
+                following URL:
+                <a href="https://github.com/Netflix/eureka/issues/600">https://github.com/Netflix/eureka/issues/600</a>
             </p>
 
             <p class="pullquote">How I solve it?</p>
 
+            <p>
+                As I see it, I had two options: either I am going to use new eureka client that is based on
+                Jersey 2.x or I downgrade Jersey 2.x -> Jersey 1.x in my project.
+                <br/>
+                After I've read couple or resources, and found out that Spring Cloud project will wait for
+                Netflix to release Eureka client support for Jersey 2.x, I've decided to go with option where
+                I will downgrade Jersey to 1.x.
+                <br/>
+                Eventually, this means:
+                <ul>
+                    <li>Do not use Spring Jersey starter,</li>
+                    <li>Add dependencies of Jersey 1.19 (latest from 1.x)</li>
+                </ul>
+            </p>
+            <p>
+                I've started new project, you can find it on Github, on following URL:
+                <a href="https://github.com/staleks/spring-boot-jersey1">https://github.com/staleks/spring-boot-jersey1</a>
+                <br/>
+                Here I didn't want to complicate stuff with DB, but example has to prove that it can "talk" to Eureka-Server
+                and to use Spring Framework as glue code.
+                <br/>
+                First build the application with Gradle, and start it in build/libs folder.
+                <br/>
+                After a while, (e.g. 30s heart-beat), you can see that <i>demo-jersey1</i> is in application list. (see the image below).
+                <img src="images/jersey/jersey-009.png">
+                Now let's examine endpoints, that are exposed in this application: /api/v1/manufacturers and /api/v1/manufacturers/2.
+                <img src="images/jersey/jersey-010.png">
+                <img src="images/jersey/jersey-011.png">
+
+                <br/>
+                As we can see, Eureka-Server sees new micro-service, and endpoints are working.
+            </p>
 
             <p>
-                Do not use Spring Jersey starter.
-                <br/>
-                Add dependencies of Jersey 1.19 (latest from 1.x)
-                <br/>
-                Napravi dva nova Github repositorija sa finalnim resenjem
-                <br/>
-                Screenshots:
-                <ul>
-                    <li>Eureka Server - apps</li>
-                    <li>Spring Boot microservice & Jersey 1.x</li>
-                </ul>
+                Let me just to remind you that this is not only solution, it is just one of the solutions.
+                Still I need to well document it.
+
+                ... to be continued ...
             </p>
 
         </div><!-- main-content/col -->
