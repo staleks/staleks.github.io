@@ -24,7 +24,7 @@
 </header>
 
 <main class="container">
-    <div class="row">
+    <p class="row">
         <p class="col-xs-12 single-content">
             <p class="meta">
                 <a class="" href="#">Aleksandar Stoisavljevic</a> in
@@ -162,9 +162,95 @@
             <hr>
 
             <p>
-                Problemi u raju. Ovde pokazati kako stvar ne funkcionise zbog toga sto
-                je Spring Cloud Eureka zasnovan na Jersey 1.x, a Spring starter Jersey je
-                baziran na Jersey 2.x
+                During integration Spring Boot and Jersey, I was facing some minor issues. Nothing much
+                and I would say that this is normal when you are facing something new.
+                <br/>
+                Following Spring Cloud documentation, adding Eureka-Client seams on the first hand
+                nothing much.
+                <br/>
+                <br/>
+                Documentation here is very simple,
+                <br/>
+                <a href="http://projects.spring.io/spring-cloud/spring-cloud.html#_service_discovery_eureka_clients">
+                    http://projects.spring.io/spring-cloud/spring-cloud.html#_service_discovery_eureka_clients
+                </a>
+                <br/>
+                <br/>
+                Things to be done:
+                <ul>
+                    <li>Spring Eureka starter (which will add dependencies needed for Eureka-Client),</li>
+                    <li>annotate Application.class of Catalog Service with @EnableEurekaClient and</li>
+                    <li>configure Eureka client (configuration where Eureka Server is, modify application.yml).</li>
+                </ul>
+            </p>
+            <p>
+                I've applied changes to existing application, you can find them in special branch of already
+                mentioned project:
+                <br/>
+                Github URL: <a href="https://github.com/staleks/spring-boot-jersey2">https://github.com/staleks/spring-boot-jersey2</a>
+                <br/>
+                Changes are applied to branch: <i>develop-eureka</i>. You can see them if you checkout that branch.
+            </p>
+            <pre>
+                <code class="bash">
+                    $ git clone https://github.com/staleks/spring-boot-jersey2.git
+                    $ git checkout develop-eureka
+                </code>
+            </pre>
+
+            <p class="pullquote">First signs of trouble in heaven.</p>
+
+            <p>
+                <b>While this was very simple on the paper, problems starts to emerge.</b>
+                <br/>
+                First I've started Eureka-Server standalone application. As specified it will bind to port 8761, and start
+                listening for any micro-service that will notify it about self. While you are still in <i>develop-eureka</i>
+                branch, you can follow same procedure as described for starting spring-boot-jersey2 demo application
+                (Gradle build, start it from /build/libs directory).
+                <br/>
+                Category micro-service will start itself, and apply to Eureka-Server as <i>demo-jersey2</i>
+                (see an image below). Application can be seen in <i>Application</i> section
+                <br/>
+                <img src="images/jersey/jersey-005.png">
+                <br/>
+                Name of micro-service is determined in micro-service itself, in bootstrap.yml file that is located on a classpath.
+                <br/>
+                While everything seams that works, on first hand, if you now try with postman all endpoints that were
+                active and available as in previous version, you will see first signs of trouble.
+                <br/>
+                <img src="images/jersey/jersey-006.png">
+            </p>
+    <pre><code class="java">
+        java.lang.NoSuchMethodError: javax.ws.rs.core.Application.getProperties()Ljava/util/Map;
+        at org.glassfish.jersey.server.ApplicationHandler.<init>(ApplicationHandler.java:331) ~[jersey-server-2.22.1.jar:na]
+        at org.glassfish.jersey.servlet.WebComponent.<init>(WebComponent.java:390) ~[jersey-container-servlet-core-2.22.1.jar:na]
+            at org.glassfish.jersey.servlet.ServletContainer.init(ServletContainer.java:172) ~[jersey-container-servlet-core-2.22.1.jar:na]
+            at org.glassfish.jersey.servlet.ServletContainer.init(ServletContainer.java:364) ~[jersey-container-servlet-core-2.22.1.jar:na]
+            at javax.servlet.GenericServlet.init(GenericServlet.java:158) ~[tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1231) ~[tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:837) ~[tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:135) ~[tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:141) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:521) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1096) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:674) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [na:1.8.0_65]
+            at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [na:1.8.0_65]
+            at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.0.30.jar:8.0.30]
+            at java.lang.Thread.run(Thread.java:745) [na:1.8.0_65]
+    </code></pre>
+
+            <p>
+                Usually this kind of Exception comes from fact that there is some mixture of classes on a classpath.
+                And if you look closely of dependencies for this project, you will find pretty obvious thing.
+                There are jersey-1.x JAR's, coming as dependencies of eureka-client applied on project. And
+                of course there are jersey-2.x JAR's coming as dependencies of spring-boot-starter-jersey.
             </p>
 
             <p class="pullquote">How I solve it?</p>
