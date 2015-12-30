@@ -34,14 +34,14 @@
 
             <h1>A story about how to setup SpringBoot, Jersey & Eureka</h1>
 
-            <p class="subtitle"><i>Jersey 2.x and SpringCloud doesn't get along so I have to make my fingers dirty ...</i></p>
+            <p class="subtitle"><i>Jersey 2.x and SpringCloud doesn't get along so I have to make my hands dirty ...</i></p>
 
             <p>
                 In the last couple of months I was evaluating/exploring micro-services. Preparing for one of the
                 conferences I've decided to make a demo application. While micro-services were not main theme for
                 conference presentation, I wanted to try to deal with micro-service architecture-based application.
                 <br/>
-                Idea that cross my mind was to investigate and try couple of Spring Cloud components.
+                Idea that crossed my mind was to investigate and try couple of Spring Cloud components.
                 <br/>
                 Main parts of final application were:
                 <ul>
@@ -53,7 +53,7 @@
             <p>
                 High Level Architecture (HLA) diagram is about to present: two well designed and minimalistic web services,
                 one that can represent Catalog (Manufacturer and PhoneModel) and the other that will deal with Inventory
-                (how many stock items of one phone model shop has at it's disposal).
+                (how many stock items of one phone model shop has at its disposal).
                 Besides that, these two simple micro-services should become part of one bigger system/application, therefore
                 I wanted to play a bit with other key aspects of micro-services architecture like: service-discovery,
                 API gateway, etc.
@@ -64,14 +64,14 @@
             <p>
                 Investigation about Eureka was pretty straight forward.
                 <br/>
-                Good starting point is folowing URL:
+                Good starting point is following URL:
                 <br/>
                 <a href="http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#spring-cloud-eureka-server">
                     http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#spring-cloud-eureka-server
                 </a>
             </p>
             <p>
-                For this simple application, Eureka Server will be run in "Standalone Mode". Configuration in this case
+                For this simple application, Eureka Server will be running in "Standalone Mode". Configuration in this case
                 is very simple, there is no need to configure peers.
                 <pre><code>
                 server:
@@ -111,10 +111,10 @@
             <p class="pullquote">Spring Boot and Jersey</p>
 
             <p>
-                Now it was the time to start building basic, already mentioned, services like Catalog service and
+                Now it was time to start building basic, already mentioned, services like Catalog service and
                 Inventory service.
                 <br/>
-                So let's start with Catalog Service. Again this will be SpringBoot based application based on REST service.
+                So let's start with Catalog Service. Again, this will be SpringBoot based application based on REST service.
                 Catalog will be dealing with two basic entities like: Manufacturer and Phone (phone-model).
                 <br/>
                 Spring-Web and Spring-MVC have nice features providing support for controller/endpoints,
@@ -215,7 +215,7 @@
                 <br/>
                 Name of micro-service is determined in micro-service itself, in bootstrap.yml file that is located on a classpath.
                 <br/>
-                While everything seams that works, on first hand, if you now try with postman all endpoints that were
+                While everything seems to work, on first hand, if you now try with postman all endpoints that were
                 active and available as in previous version, you will see first signs of trouble.
                 <br/>
                 <img src="images/jersey/jersey-006.png">
@@ -282,7 +282,7 @@
                 You will notice that this is almost same project as it was <i>demo-jersey2</i>.
                 Example has to prove that it can "talk" to Eureka-Server and to use Spring Framework as glue code.
                 <br/>
-                How to start the application, you can find it in README.md.
+                You can find how to start application in README.md
                 <br/>
                 After a while, (e.g. 30s heart-beat), you can see that <i>demo-jersey1</i> is in application list. (see the image below).
                 <img src="images/jersey/jersey-009.png">
@@ -307,13 +307,11 @@
             </p>
 
             <p>
-                Let me just to remind you that this is not only solution, it is just one of the solutions.
-                But it is working which is success by itself.
+                Let me just to remind you that this is not the only solution, it is just one of the solutions.
+                But it is working which is a success by itself.
                 <br/>
-                Still I need to well document it.
+                Still I need to document it well.
                 <br/>
-                <br/>
-                ... to be continued ...
             </p>
 
         </div><!-- main-content/col -->
